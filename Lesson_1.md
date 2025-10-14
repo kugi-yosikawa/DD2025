@@ -93,7 +93,7 @@ variables:
   float S_STDEV：塩分の格子内観測値の標準偏差  
   float T_STDEV：水温の格子内観測値の標準偏差
 
-python で読み込むには
+python で読み込むには以下のようにすれば良い（１例）
 
 ```
 import numpy as np
@@ -112,7 +112,6 @@ toi = nc['TOI'][:]
 soi = nc['SOI'][:]
 nc.close()
 ```
-とすれば良い。
 
 なお、fortran形式の配列格納順に慣れている人（私など）は以下のように転置しておくと良い。
 
@@ -123,7 +122,7 @@ soi = soi.T
 ```
 
 ## MOAA GPV データの描画
-例えば最浅層の水温を描画するには以下のようにする。
+例えば最浅層の水温を描画するには以下のようにすれば良い（１例）。
 
 ```
 import numpy as np
@@ -184,3 +183,5 @@ fig.tight_layout()
 
 fig.show()
 ```
+
+<img src="表示させたい画像のURL">
