@@ -100,7 +100,7 @@ import numpy as np
 import xarray as xr
 
 # read MOAA GPV data
-file='../DATA/MOAA/2024/MOAAv2_OI_TS_20240115_MON_100deg_5-2000db.nc'
+file='MOAAv2_OI_TS_20240115_MON_100deg_5-2000db.nc'
 nc = xr.open_dataset(file)
 
 date = nc['CDATE0']
@@ -162,7 +162,7 @@ cs.clabel(cs.levels[::2],fmt='%1.2f')
 cbar.add_lines(cs)
 
 figa.coastlines(linewidth=3)
-figa.set_title('Temperature at {:5} m depth,  ('.format(prs[k])+date.astype('U16').values+')')
+figa.set_title('Temperature at {:5} m depth,  ('.format(prs[k])+str(date.astype('U16').values)+')')
 
 figa.set_global()
 
@@ -175,7 +175,7 @@ cs.clabel(cs.levels[::2],fmt='%1.2f')
 cbar.add_lines(cs)
 
 figb.coastlines(linewidth=3)
-figb.set_title('Salinity at {:5} m depth,  ('.format(prs[k])+date.astype('U16').values+')')
+figb.set_title('Salinity at {:5} m depth,  ('.format(prs[k])+str(date.astype('U16').values)+')')
 
 figb.set_global()
 
