@@ -184,4 +184,4 @@ fig.tight_layout()
 fig.show()
 ```
 
-<img src="表示させたい画像のURL">
+<img src="https://github.com/kugi-yosikawa/DD2025/blob/main/2024_01_15.jpg">
