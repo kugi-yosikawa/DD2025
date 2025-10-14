@@ -1,4 +1,4 @@
-# MOAA GPV データのダウンロードと描画
+# MOAA GPV データのダウンロードと読み込み、描画
 
 ## MOAA GPV データとは
 [Argoフロート](https://www.jamstec.go.jp/argo/j/)のデータやその他利用可能な水温塩分データを、最適内挿法を用いて格子化したデータセット。[海洋研究開発機構（JAMSTEC）](https://www.jamstec.go.jp/j/)が作成・公開を行っている。英語名は Grid Point Value of the Monthly Objective Analysis using the Argo data。
@@ -7,7 +7,7 @@ MOAA GPV データの詳細は[ここ](https://www.jamstec.go.jp/argo_research/d
 データセットは Argo フロートが展開された 2001 年からあるが、2005年ころまではフロート数が十分でない点に注意。
 
 ## MOAA GPV データのダウンロード
-[ここ](https://pubargo.jamstec.go.jp/argo_product/catalog/moaagpv2/catalog.html)からダウンロード。データセットには速報性を重視した near real time （準リアルタイム）と正確性を重視した delayed mode （遅延モード）がある。課題演習では遅延モードを解析。  
+[ここ](https://pubargo.jamstec.go.jp/argo_product/catalog/moaagpv2/catalog.html)からダウンロード。データセットには速報性を重視した near real time （準リアルタイム）と遅れて収集されたデータも含む delayed mode （遅延モード）がある。課題演習ではどちらを使っても良いが、以下では遅延モードを想定。  
 ファイルは年毎に MOAAv2_OI_20XX_MON.tar.gz ファイルにまとめられている。 ファイル拡張子が tar のファイルは複数のファイルを tar コマンドでまとめたファイル、拡張子が gz のファイルはgzipコマンドで圧縮したファイルを示すのが慣例。
 ファイル名をクリック、開いたサイトの Access の HTTPServer をクリックしてダウンロード。
 
@@ -81,6 +81,7 @@ variables:
 - variables：データの種類  
   int PRES(PRES) ：整数変数で名前がPRES（圧力 dbar）の１次元配列、格子数もPRES  
   char CDATE0(STRING16) ：文字変数で名前がCDATE0（解析日時の中央値）、文字数がSTRING16  
+  char DATASET_TYPE(STRING16)：文字変数で名前がDATASET_TYPE（near real time か delayed modeか）、文字数がSTRING16
   float SOI_ERR(PRES, LATITUDE, LONGITUDE) ：実数変数で名前がSOI_ERR（最適内挿時の塩分推定誤差、PSS-78、psu）の３次元（経度、緯度、深度）配列、不定値は -10000.0 が入っている  
   float TOI_ERR：水温推定誤差（ITS90、℃）  
   float LATITUDE(LATITUDE)：字数変数で名前がLATITUDE（緯度）の１次元配列  
@@ -90,6 +91,96 @@ variables:
   float TOI：水温の最適内挿値（ITS90、℃）  
   float T_CLIM：水温の気候値  
   float S_STDEV：塩分の格子内観測値の標準偏差  
-  float T_STDEV：水温の格子内観測値の標準偏差  
+  float T_STDEV：水温の格子内観測値の標準偏差
 
-  
+python で読み込むには
+
+```
+import numpy as np
+import xarray as xr
+
+# read MOAA GPV data
+file='../DATA/MOAA/2024/MOAAv2_OI_TS_20240115_MON_100deg_5-2000db.nc'
+nc = xr.open_dataset(file)
+
+date = nc['CDATE0']
+dtyp = nc['DATASET_TYPE']
+lat = nc['LATITUDE'][:]
+lon = nc['LONGITUDE'][:]
+prs = nc['PRES'][:]
+toi = nc['TOI'][:]
+soi = nc['SOI'][:]
+nc.close()
+```
+とすれば良い。
+
+なお、fortran形式の配列格納順に慣れている人（私など）は以下のように転置しておくと良い。
+
+```
+# transpose (pres,lat,lon) (C style) -> (lon,lat,pres) (F style)
+toi = toi.T
+soi = soi.T
+```
+
+## MOAA GPV データの描画
+例えば最浅層の水温を描画するには以下のようにする。
+
+```
+import numpy as np
+import matplotlib.pyplot as plt
+import xarray as xr
+import datetime
+
+# 地図描画のため
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+import matplotlib.ticker as mticker
+import matplotlib.style as mplstyle
+from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
+
+# 座標の定義（fortran形式の場合）
+X,Y = np.meshgrid(lon, lat, indexing = 'ij')  # indexing = 'ij' is F style
+
+# set contour interval
+tlev=np.arange(21)*2.-2.
+slev=np.arange(21)*0.5+30.
+
+# set depth level
+k=0
+
+fig, (figa, figb) = plt.subplots(figsize=(18,12),ncols=1,nrows=2,subplot_kw=dict(projection=ccrs.PlateCarree(central_longitude=210)))
+
+gl = figa.gridlines(crs=ccrs.PlateCarree())
+gl.xlocator = mticker.FixedLocator(np.arange(-180,180.1,30))
+gl.ylocator = mticker.FixedLocator(np.arange(-75,75.1,15))
+
+data=np.copy(toi[:,:,k])
+cf=figa.contourf(X,Y,data, transform=ccrs.PlateCarree(),cmap='jet',levels=tlev)
+cbar=fig.colorbar(cf,ax=figa,shrink=0.8)
+cbar.set_label('temp [C]')
+cs = figa.contour(cf, transform=ccrs.PlateCarree(), colors = 'w', linewidths = 0.5)
+cs.clabel(cs.levels[::2],fmt='%1.2f')
+cbar.add_lines(cs)
+
+figa.coastlines(linewidth=3)
+figa.set_title('Temperature at {:5} m depth,  ('.format(prs[k])+date.astype('U16').values+')')
+
+figa.set_global()
+
+data=np.copy(soi[:,:,k])
+cf=figb.contourf(X,Y,data, transform=ccrs.PlateCarree(),cmap='jet',levels=slev)
+cbar=fig.colorbar(cf,ax=figb,shrink=0.8)
+cbar.set_label('salt')
+cs = figb.contour(cf, transform=ccrs.PlateCarree(), colors = 'w', linewidths = 0.5)
+cs.clabel(cs.levels[::2],fmt='%1.2f')
+cbar.add_lines(cs)
+
+figb.coastlines(linewidth=3)
+figb.set_title('Salinity at {:5} m depth,  ('.format(prs[k])+date.astype('U16').values+')')
+
+figb.set_global()
+
+fig.tight_layout()
+
+fig.show()
+```
