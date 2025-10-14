@@ -7,7 +7,7 @@ MOAA GPV データの詳細は[ここ](https://www.jamstec.go.jp/argo_research/d
 データセットは Argo フロートが展開された 2001 年からあるが、2005年ころまではフロート数が十分でない点に注意。
 
 ## MOAA GPV データのダウンロード
-[ここ](https://pubargo.jamstec.go.jp/argo_product/catalog/moaagpv2/catalog.html)からダウンロード。データセットには速報性を重視した near real time （準リアルタイム）と正確性を重視した delayed mode （遅延モード）がある。課題演習では遅延モードを解析。
+[ここ](https://pubargo.jamstec.go.jp/argo_product/catalog/moaagpv2/catalog.html)からダウンロード。データセットには速報性を重視した near real time （準リアルタイム）と正確性を重視した delayed mode （遅延モード）がある。課題演習では遅延モードを解析。  
 ファイルは年毎に MOAAv2_OI_20XX_MON.tar.gz ファイルにまとめられている。 ファイル拡張子が tar のファイルは複数のファイルを tar コマンドでまとめたファイル、拡張子が gz のファイルはgzipコマンドで圧縮したファイルを示すのが慣例。
 ファイル名をクリック、開いたサイトの Access の HTTPServer をクリックしてダウンロード。
 
@@ -23,7 +23,7 @@ MOAA GPV データの詳細は[ここ](https://www.jamstec.go.jp/argo_research/d
 各月毎のファイルが展開される。
 
 ## MOAA GPV データの読み込み
-MOAA GPV データは [NETCDF](https://www.unidata.ucar.edu/software/netcdf) ファイル形式で格納されている。簡単に言うと、数値データだけでなくそのフォーマットもファイル内に記述されているファイル形式。気象・海洋分野の世界的標準形式になっている。fortran や python で読み込める。
+MOAA GPV データは [NETCDF](https://www.unidata.ucar.edu/software/netcdf) ファイル形式で格納されている。簡単に言うと、数値データだけでなくそのフォーマットもファイル内に記述されているファイル形式。気象・海洋分野の世界的標準形式になっている。fortran や python で読み込める。  
 含まれているデータを知るには、以下の ncdump コマンドが便利。
 
 ```ncdump -h NETCDFデータ```
@@ -75,21 +75,21 @@ variables:
 ```
 
 
-- dimensions：データの格子数（配列数）
-  LONGITUDE：経度方向格子数、LATITUDE：緯度方向格子数、PRES：深度（圧力）方向格子数
+- dimensions：データの格子数（配列数）  
+  LONGITUDE：経度方向格子数、LATITUDE：緯度方向格子数、PRES：深度（圧力）方向格子数  
   STRING16：文字数（１６文字の文字変数として定義されている）
-- variables：データの種類
-  int PRES(PRES) ：整数変数で名前がPRESの１次元配列、格子数もPRES
-  char CDATE0(STRING16) ：文字変数で名前がCDATE0、文字数がSTRING16
-  float SOI_ERR(PRES, LATITUDE, LONGITUDE) ：実数変数で名前がSOI_ERR（最適内挿時の塩分推定誤差）の３次元（経度、緯度、深度）配列、不定値は -10000.0 が入っている
-  float TOI_ERR：水温推定誤差
-  float LATITUDE(LATITUDE)：字数変数で名前がLATITUDE（緯度）の１次元配列。
-  float LONGITUDE：経度
-  float SOI：塩分の最適内装値
-  float S_CLIM：塩分の気候値（平均値）
-  float TOI：水温の最適内挿値
-  float T_CLIM：水温の気候値（平均値）
-  float S_STDEV：塩分の格子内観測値の標準偏差
-  float T_STDEV：水温の格子内観測値の標準偏差
+- variables：データの種類  
+  int PRES(PRES) ：整数変数で名前がPRES（圧力 dbar）の１次元配列、格子数もPRES  
+  char CDATE0(STRING16) ：文字変数で名前がCDATE0（解析日時の中央値）、文字数がSTRING16  
+  float SOI_ERR(PRES, LATITUDE, LONGITUDE) ：実数変数で名前がSOI_ERR（最適内挿時の塩分推定誤差、PSS-78、psu）の３次元（経度、緯度、深度）配列、不定値は -10000.0 が入っている  
+  float TOI_ERR：水温推定誤差（ITS90、℃）  
+  float LATITUDE(LATITUDE)：字数変数で名前がLATITUDE（緯度）の１次元配列  
+  float LONGITUDE：経度  
+  float SOI：塩分の最適内挿値（PSS-78、psu）  
+  float S_CLIM：塩分の気候値（WOA13の平均値＝最適内挿法での初期値）  
+  float TOI：水温の最適内挿値（ITS90、℃）  
+  float T_CLIM：水温の気候値  
+  float S_STDEV：塩分の格子内観測値の標準偏差  
+  float T_STDEV：水温の格子内観測値の標準偏差  
 
   
