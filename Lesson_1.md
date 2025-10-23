@@ -147,13 +147,14 @@ slev=np.arange(21)*0.5+30.
 # set depth level
 k=0
 
-fig, (figa, figb) = plt.subplots(figsize=(18,12),ncols=1,nrows=2,subplot_kw=dict(projection=ccrs.PlateCarree(central_longitude=210)))
+fig, (figa, figb) = plt.subplots(figsize=(8,6),ncols=1,nrows=2,subplot_kw=dict(projection=ccrs.PlateCarree(central_longitude=210)))
 
 gl = figa.gridlines(crs=ccrs.PlateCarree())
 gl.xlocator = mticker.FixedLocator(np.arange(-180,180.1,30))
 gl.ylocator = mticker.FixedLocator(np.arange(-75,75.1,15))
 
 data=np.copy(toi[:,:,k])
+#data=np.copy(toi[:,:,:].sel(PRES=5)) # xarray の sel 関数を使うことも可能
 cf=figa.contourf(X,Y,data, transform=ccrs.PlateCarree(),cmap='jet',levels=tlev)
 cbar=fig.colorbar(cf,ax=figa,shrink=0.8)
 cbar.set_label('temp [C]')
@@ -182,6 +183,24 @@ figb.set_global()
 fig.tight_layout()
 
 fig.show()
+# plt.show() # ipython ではなく python で実行するときはこちらを選択
 ```
 
 <img src="https://github.com/kugi-yosikawa/DD2025/blob/main/2024_01_15.jpg">
+
+
+### 作成した図のファイル保存
+図をファイルに保存するには画面出力のところ ```fig.show()``` で以下を加える。
+```
+fig.savefig('ファイル名')
+```
+'ファイル名'のところは保存させるファイル名を書く。例えば'test.jpg'とするとjpeg形式で、'test.eps'とするとEPS形式で保存される。 
+
+なお、ファイル名に深度や年月を含めると簡単に整理できる。例えば以下のようにすると、深度や年月をファイル名に含めることができる。
+```
+filename=str(date.astype('U16').values) # date を、Unicode形式16文字（U16）に変換（astype）し、値のみ取り出し（values）、ndarray から文字変数に変換（str）
+filename=filename.replace('/','') # 文字列中の"/"を""に変換（削除）、（replace）
+filename=filename[0:6] # 先頭の６文字のみ取り出し
+filename='map_k{:02}'.format(k)+'date'+filename'+'.jpg' # 整数 k を書式指定して文字変数に変換（'{:02}'.format()、２桁表示：１桁の場合は０埋め）し、文字変数をつなぎ合わせて（+）最終ファイル名（filename）を設定
+fig.savefig(filename) 
+```
