@@ -201,6 +201,6 @@ fig.savefig('ファイル名')
 filename=str(date.astype('U16').values) # date を、Unicode形式16文字（U16）に変換（astype）し、値のみ取り出し（values）、ndarray から文字変数に変換（str）
 filename=filename.replace('/','') # 文字列中の"/"を""に変換（削除）、（replace）
 filename=filename[0:6] # 先頭の６文字のみ取り出し
-filename='map_k{:02}'.format(k)+'date'+filename'+'.jpg' # 整数 k を書式指定して文字変数に変換（'{:02}'.format()、２桁表示：１桁の場合は０埋め）し、文字変数をつなぎ合わせて（+）最終ファイル名（filename）を設定
+filename='map_k{:02}'.format(k)+'date'+filename+'.jpg' # 整数 k を書式指定して文字変数に変換（'{:02}'.format()、２桁表示：１桁の場合は０埋め）し、文字変数をつなぎ合わせて（+）最終ファイル名（filename）を設定
 fig.savefig(filename) 
 ```
