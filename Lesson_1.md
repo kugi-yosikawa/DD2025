@@ -206,7 +206,6 @@ fig.savefig(filename)
 ```
 
 ### 読み込むデータの年月を自動で変える（ループさせる）
-必要なライブラリを最初に読み込んでおく
 
 ```
 import datetime
