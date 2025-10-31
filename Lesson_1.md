@@ -204,3 +204,35 @@ filename=filename[0:6] # 先頭の６文字のみ取り出し
 filename='map_k{:02}'.format(k)+'date'+filename+'.jpg' # 整数 k を書式指定して文字変数に変換（'{:02}'.format()、２桁表示：１桁の場合は０埋め）し、文字変数をつなぎ合わせて（+）最終ファイル名（filename）を設定
 fig.savefig(filename) 
 ```
+
+### 読み込むデータの年月を自動で変える（ループさせる）
+必要なライブラリを最初に読み込んでおく
+
+```
+import datetime
+from dateutil.relativedelta import relativedelta
+
+# （設定）
+
+#　最初の年月、最後の年月を指定
+year_begin,month_begin=2024,1 # 最初
+year_end,month_end=2024,3 # 最後
+
+# datetime オブジェクトを設定
+dt    =datetime.datetime(year_begin,month_begin,15) # 最初の年月、逐次更新される
+dt_end=datetime.datetime(year_end  ,month_end  ,15) # 最後の年月
+
+while True: # ずっとループ処理
+    dt_str=dt.strftime('%Y%m') # 年月を文字変数（dt_str）に変換
+
+    # read MOAA GPV data
+    rfile='../DATA/MOAA/2024/MOAAv2_OI_TS_'+dt_str+'15_MON_100deg_5-2000db.nc'
+    ncr = xr.open_dataset(rfile)
+
+    # （データ読み込み）
+    # （作図）
+
+    if dt == dt_end : # dt_endになったらループを抜ける
+        break
+    dt=dt+relativedelta(months=1) # １月進める
+```
