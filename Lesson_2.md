@@ -11,7 +11,7 @@ OHC $= \int_D^0 \rho C_pT dz$
 使用する関数は
 + gsw.SA_from_SP：実用塩分（PSS-78）、緯度・経度・圧力（水深）から絶対塩分を計算
 + gsw.CT_from_t：水温（ITS90）、絶対塩分、圧力がら保存水温を計算
-+ gsw.enthalpy：絶対塩分、保存水温からエンタルピー（ $C_p T$ ）を計算
++ gsw.enthalpy：絶対塩分、保存水温から単位質量あたりのエンタルピー（ $C_p T$ ）を計算
 + gsw.rho：絶対塩分、保存水温、圧力から海水密度（ $\rho$ ）を計算
 の4つ。各関数の使い方は[GSW Toolbox のマニュアル](https://www.teos-10.org/pubs/gsw/html/gsw_contents.html)を参照のこと。
 
