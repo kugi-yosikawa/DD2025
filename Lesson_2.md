@@ -52,7 +52,7 @@ for i in range(im) :
 
 ## 空間分布の描画と時系列の描画
 
-OHCの水平分布と、TOHCの時系列を描画する。 時系列をTrenverthと比較する。
+OHCの水平分布と、TOHCの時系列を描画する。 時系列をTrenberthと比較する。
 ```
 TOHC=[]
 while True :
