@@ -1,20 +1,22 @@
 # 海流による熱輸送の推定
 OHCの時空間変化を引き起こす要因である、海流による熱輸送を推定しよう。ここでは、海流として地衡流とエクマン流（鉛直積分した輸送）を考える。
 
-## MOAAデータを用いた地衡流の推算
-はじめに力学高度（$D$）
- $D=\int_p^{p_r} \delta dp^\prime = \int_p^{p_r} 1/\rho dp^\prime$
-を計算する。ここで $\delta =1/\rho$ は比容（単位質量あたりの体積）、$p$ は力学高度を求める圧力、$p_r$ は基準圧力である。実際の計算では、基準とする海水の比容 $\delta_0$ からの偏差を用いて力学行動偏差を計算することで、計算精度を保つようにする。
+## MOAA GPVデータを用いた地衡流の推算
+はじめに力学高度（$D$）  
+$D=\int_p^{p_r} \delta dp^\prime = \int_p^{p_r} \rho^{-1} dp^\prime$  
+を計算する。ここで $\delta =1/\rho$ は比容（単位質量あたりの体積）、 $p$ は力学高度を求める圧力、 $p_r$ は基準圧力である。実際の計算では、基準とする海水の比容 $\delta_0$ からの偏差を用いて力学行動偏差を計算することで、計算精度を保つようにする。
 
-地衡流は力学高度を用いて
- $u(p)=u(p_r)-f^{-1}\partial D/\partial y$
- $v(p)=v(p_r)+f^{-1}\partial D/\partial x$
+地衡流は力学高度を用いて  
+ $u(p)=u(p_r)-f^{-1}\partial D/\partial y$  
+ $v(p)=v(p_r)+f^{-1}\partial D/\partial x$  
 として計算できる。
 
 力学高度を絶対塩分と保存温度から求める関数と、力学高度から地衡流を推算する関数も、[The Gibbs SeaWater (GSW) Oceanographic Toolbox of TEOS-10](https://www.teos-10.org/pubs/gsw/html/gsw_front_page.html) で提供されている。  
 使用する関数は
+
 + gsw.geo_strf_dyn_height：絶対塩分、保存温度、圧力から力学高度偏差を計算
 + gsw.geostrophic_velocity：力学高度偏差、緯度、経度から地衡流速を計算
+
 の２つ。各関数の使い方は[GSW Toolbox のマニュアル](https://www.teos-10.org/pubs/gsw/html/gsw_contents.html)を参照のこと。
 
 注意とTips
