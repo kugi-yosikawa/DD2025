@@ -41,11 +41,12 @@ MOAA GPV データを読み込んで地衡流を推算する Python コードの
 
 データは[J-OFURO3のサイト](https://www.j-ofuro.com)からダウンロード可能である。月毎・日毎のデータがあるが、この演習では月毎データを用いれば良い。風応力は高解像度（HR：緯度経度0.25度格子）のTAUX、TAUYを選択する。データ形式は MOAA GPV と同様に netcdf 形式である。
 
+### 再解析値
+Trenberth et al. (2025) でも用いられていた、ECMWF（欧州中期予報局） の ERA5 再解析データについて説明する。2025年の最新のデータも活用できるという利点がある。ERA5はECMWFが開発した第5世代の大気再解析データセットであり、様々な気象要素を公開している。データセットの詳細は[ここ](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview) を参照のこと。本演習で用いる月平均海面風応力は、[ダウンロードサイト](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=download)の Mean rates / Mean eastward turbulent surface stress, Mean northward turbulent surface stress である。対象領域（全球）、対象期間を指定して、netcdf 形式でダウンロードすればよい。
+
 注意とTips
 + 0.25度の風応力データをそのまま用いても良いし、MOAA GPV のデータに合わせて１度毎に直して用いても良い。
 
-### 再解析値
-Trenberth et al. (2025) でも用いられていた、ECMWF（欧州中期予報局） の ERA5 再解析データについて説明する。2025年の最新のデータも活用できるという利点がある。ERA5はECMWFが開発した第5世代の大気再解析データセットであり、様々な気象要素を公開している。データセットの詳細は[ここ](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=overview) を参照のこと。本演習で用いる月平均海面風応力は、[ダウンロードサイト](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-monthly-means?tab=download)の Mean rates / Mean eastward turbulent surface stress, Mean northward turbulent surface stress である。対象領域（全球）、対象期間を指定して、netcdf 形式でダウンロードすればよい。
 
 ## 熱輸送の計算
 
