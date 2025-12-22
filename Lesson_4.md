@@ -24,7 +24,7 @@
 
 ### その１
 
-![サンプル１](https://github.com/kugi-yosikawa/DD2025/blob/main/PCAsample1.gif)
+[サンプル１](https://github.com/kugi-yosikawa/DD2025/blob/main/PCAsample1.gif)
 
 第１モード、第２モード
 
