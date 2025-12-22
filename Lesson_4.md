@@ -19,16 +19,51 @@
   + それが物理・力学過程の抽出になる場合もある
 + 将来の予測
 
+## 準備
+時刻 $n$ 、地点 $l$ で観測される変数を $x_{nl}$ （ $n=1-N$ 、 $l=1-L$ ）とする。ある地点 $l$ における観測データ $x_{nl}$ の時間に関する平均、分散、標準偏差、規格化を以下のように表記する。
 
-## 簡単な例
+平均：
+```math
+\overline{x}^{n}_l \equiv \frac{1}{N}\Sigma_n x_{nl}
+```
 
-### その１
+分散（変動強度を表す指標）：
+```math
+s^{2}_l \equiv \frac{1}{N}\Sigma_n (x_{nl}- \overline{x}^n_l)^2
+```
 
-[サンプル１](https://github.com/kugi-yosikawa/DD2025/blob/main/PCAsample1.gif)
+標準偏差（変動強度を表す指標）：
+```math
+s_l \equiv \sqrt{ \frac{1}{N}\Sigma_n (x_{nl}- \overline{x}^n_l)^2 }
+```
 
-第１モード、第２モード
+規格化変数：
+```math
+x_{nl}^{norm} \equiv \frac{x_{nl}-\overline{x}^n_l}{s_l}
+```
 
-### その２
+共分散（共変強度を表す指標）：
+```math
+c_{12} \equiv \frac{1}{N}\Sigma_n (x_{n1}-\overline{x}^n_1)(x_{n2}-\overline{x}^n_2)   \\  
+c_{11} = s^2_l
+```
+
+相関係数（共変強度を表す指標）：
+```math
+r_{12} \equiv \frac{c_{12}}{s_1s_2} = \frac{1}{N}\Sigma_n \frac{x_{n1}-\overline{x}^n_1}{s_1}\frac{x_{n2}-\overline{x}^n_2}{s_2}=\frac{1}{N}\Sigma_n x_{n1}^{norm} x_{n2}^{norm}
+```
+
+
+
+!## 簡単な例
+
+!### その１
+
+![サンプル１](https://github.com/kugi-yosikawa/DD2025/blob/main/PCAsample1.gif)
+
+!第１モード、第２モード
+
+!### その２
 
 
 \psfrag{title}[][]{第１モード}
