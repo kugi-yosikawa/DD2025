@@ -429,14 +429,14 @@ pythonの[サンプルコード](https://github.com/kugi-yosikawa/DD2025/blob/ma
 
 サンプルコードで出力される、観測データの時系列表示、散布図（＋主成分構造）表示、主成分振幅の時系列表示を以下に示す
 
-観測データの時系列（赤：地点１の時系列、青：地点２の時系列）
-
 <img src="https://github.com/kugi-yosikawa/DD2025/blob/main/obsdat_timser.jpg">
 
-観測データの散布図（横軸：地点１のデータ、縦軸：地点２のデータ）と主成分分析で得られた第一モード（赤線）と第２モード（青線）
+観測データの時系列（赤：地点１の時系列、青：地点２の時系列）
 
 <img src="https://github.com/kugi-yosikawa/DD2025/blob/main/obsdat_scattr.jpg">
 
-第一モード振幅（赤線）と第２モード振幅（青線）の時系列
+観測データの散布図（横軸：地点１の観測値、縦軸：地点２の観測値）と主成分分析で得られた第一モード（赤線）と第２モード（青線）の構造関数
 
 <img src="https://github.com/kugi-yosikawa/DD2025/blob/main/scores_timser.jpg">
+
+第一モード振幅（赤線）と第２モード振幅（青線）の時系列
