@@ -408,7 +408,7 @@ a^1_Ny^1_1 & a^1_Ny^1_2 & \cdots & a^1_Ny^1_L
 
 | 一般表記 | 吉川の言い方 | 英語表記 | 数学表記 |
 | :---: | :---: | :---: | :---: |
-| 主成分 |       |       | Principal Component | |
+| 主成分 |       | Principal Component | |
 | 結合係数 | 構造関数 | Loading | $\boldsymbol{y}^m$ |
 | 主成分得点 | 振幅時系列 | Score | $\boldsymbol{a}^m$ | 
 | 寄与率 | | Proportion | $\frac{\lambda^m}{\sum_{m=1}^M\lambda^m}$ |
@@ -423,10 +423,14 @@ a^1_Ny^1_1 & a^1_Ny^1_2 & \cdots & a^1_Ny^1_L
 
 ## サンプル
 
- pythonの[サンプルコード](https://github.com/kugi-yosikawa/DD2025/blob/main/pca_onedim_sample.py) は２地点の時間変動データの主成分分析を行うコード
+pythonの[サンプルコード](https://github.com/kugi-yosikawa/DD2025/blob/main/pca_onedim_sample.py) は２地点の時間変動データの主成分分析を行うコードを例とする。このコードでは、以下の動画のように２地点で変動するデータ（例えば京都と東京の気温のようなデータ、コードの中で適当に作成したデータ）を主成分分析する。
 
- 以下の動画のように２地点で変動するデータ（例えば京都と東京の気温）を主成分分析する。
+<img src="https://github.com/kugi-yosikawa/DD2025/blob/main/obsdat.gif">
 
- <img src="https://github.com/kugi-yosikawa/DD2025/blob/main/obsdat.gif">
+観測データの時系列表示、散布図（＋主成分構造）表示、主成分振幅の時系列表示は以下
+
+<img src="https://github.com/kugi-yosikawa/DD2025/blob/main/obsdat_timser.jpg">
+<img src="https://github.com/kugi-yosikawa/DD2025/blob/main/obsdat_scattr.jpg">
+<img src="https://github.com/kugi-yosikawa/DD2025/blob/main/scores_timser.jpg">
 
 
