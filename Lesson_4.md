@@ -409,8 +409,8 @@ a^1_Ny^1_1 & a^1_Ny^1_2 & \cdots & a^1_Ny^1_L
 | 一般表記 | 吉川の言い方 | 英語表記 | 数学表記 |
 | :---: | :---: | :---: | :---: |
 | 主成分 |       | Principal Component | |
-| 結合係数 | 構造関数 | Loading | $\boldsymbol{y}^m$ |
-| 主成分得点 | 振幅時系列 | Score | $\boldsymbol{a}^m$ | 
+| 結合係数 | 構造関数 | Loading | $\boldsymbol{y}^m=(y_1^m,y_2^m,\cdots,y_L^m)$ |
+| 主成分得点 | 振幅時系列 | Score | $\boldsymbol{a}^m=(a_1^m,a_2^m,\cdots,a_N^m)$ | 
 | 寄与率 | | Proportion | $\frac{\lambda^m}{\sum_{m=1}^M\lambda^m}$ |
 | 累積寄与率 | | Cummulative Proportion | $\frac{\sum_{m=1}^m\lambda^m}{\sum_{m=1}^M\lambda^m}$ |
 
