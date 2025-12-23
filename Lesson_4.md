@@ -421,3 +421,9 @@ a^1_Ny^1_1 & a^1_Ny^1_2 & \cdots & a^1_Ny^1_L
 ## サンプル
 
  pythonの[サンプルコード](https://github.com/kugi-yosikawa/DD2025/blob/main/pca_onedim_sample.py) は２地点の時間変動データの主成分分析を行うコード
+
+ 以下の動画のように２地点で変動するデータ（例えば京都と東京の気温）を主成分分析する。
+
+ <img src="https://github.com/kugi-yosikawa/DD2025/blob/main/obsdat.gif">
+
+
