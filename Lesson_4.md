@@ -409,10 +409,10 @@ a^1_Ny^1_1 & a^1_Ny^1_2 & \cdots & a^1_Ny^1_L
 | 一般表記 | 吉川の言い方 | 英語表記 | 数学表記 | 意味 |
 | :---:   | :---:      | :---:   | :---: | :---: |
 | 主成分 | | Principal Component | | |
-| 結合係数数 | 構造関数| Loading | $\boldsymbol{y}^m=(y_1^m,y_2^m,\cdots,y_L^m)$ $ | 各成分の空間構造 |
+| 結合係数数 | 構造関数| Loading | $\boldsymbol{y}^m=(y_1^m,y_2^m,\cdots,y_L^m)$ | 各成分の空間構造 |
 | 主成分得点 | 振幅 | Score | $\boldsymbol{a}^m=(a_1^m,a_2^m,\cdots,a_N^m)$ | 各成分の振幅 |
 | 寄与率 | | Proportion | $\frac{\lambda^m}{\sum_{m=1}^M\lambda^m}$ | モードの説明分散比 |
-| 累積寄与率 | | Cummulative Proportion | $\frac{\sum_{m=1}^m\lambda^m}{\sum_{m=1}^M\lambda^m}$ | |
+| 累積寄与率 | | Cummulative Proportion | $\frac{\sum_{m=1}^m\lambda^m}{\sum_{m=1}^M\lambda^m}$ | そのモードまでの累積説明分散比 |
 
 ## 主成分の具体的計算方法
 
