@@ -97,9 +97,12 @@ r_{12} & \equiv \frac{c_{12}}{s_1s_2} \\
 <img src="https://github.com/kugi-yosikawa/DD2025/blob/main/PCA_image.png">
 
 + 時刻 $n$ での変動 $(x_{n1},x_{n2})$ を、主軸と副軸の成分を用いて、 $(y_{n1},y_{n2})$ で表現することを試みる。この際、時刻 $n$ での全変動強度を変えないように $y_{nl}$ を定義する。
-  ```math
-  x_{n1}^2+x_{n2}^2=y_{n1}^2+y_{n2}^2
-  ```
+```math
+\begin{align}
+& x_{n1}^2+x_{n2}^2=y_{n1}^2+y_{n2}^2
+\end{align}
+```
+
   全変動強度も不変（ $\sum_n \sum_l x_{nl}^2 = \sum_n \sum_l y_{nl}^2$ ）に注意
 + 主軸を $\sum_n y_{n1}^2$ が最大となる軸と定義
 + 副軸を それに直交する軸と定義
