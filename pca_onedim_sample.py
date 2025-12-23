@@ -84,19 +84,19 @@ for m in range(mm) :
 # Draw Observed Variables
 #
 
-
- Plot Observed Values (animation)
-
-for n in range(0,nm,4) :
-    fig, figa = plt.subplots(figsize=(8,6),ncols=1,nrows=1)
-
-    figa.plot(obsdat[:,n],marker='o')
-    figa.set_xlim(-1,2)
-    figa.set_ylim(np.min(obsdat),np.max(obsdat))
-    figa.set_xlabel('Observed Location')
-    figa.set_ylabel('Observed Values')
-    fig.tight_layout()
-    fig.show()
+#
+# Plot Observed Values (animation)
+#
+#for n in range(0,nm,4) :
+#    fig, figa = plt.subplots(figsize=(8,6),ncols=1,nrows=1)
+#
+#    figa.plot(obsdat[:,n],marker='o')
+#    figa.set_xlim(-1,2)
+#    figa.set_ylim(np.min(obsdat),np.max(obsdat))
+#    figa.set_xlabel('Observed Location')
+#    figa.set_ylabel('Observed Values')
+#    fig.tight_layout()
+#    fig.show()
 
 
 #
