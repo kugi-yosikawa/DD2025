@@ -211,10 +211,10 @@ a_2 \
 \vdots \
 a_N
 \end{pmatrix} = \begin{pmatrix}
-x_11 y_1+x_12y_2+ \cdots +x_{1L}y_L \
-x_21 y_1+x_22y_2+ \cdots +x_{2L}y_L \
+x_{11} y_1+x_{12}y_2+ \cdots +x_{1L}y_L \
+x_{21} y_1+x_{22}y_2+ \cdots +x_{2L}y_L \
 \vdots \
-x_N1 y_1+x_N2y_2+ \cdots +x_{NL}y_L
+x_{N1} y_1+x_{N2}y_2+ \cdots +x_{NL}y_L
 \end{pmatrix} \\
 & = \begin{pmatrix}
 x_{11} & x_{12} & \cdots & x_{1L} \
@@ -283,17 +283,17 @@ $J$ が最大となる条件
 \frac{\partial J}{\partial y_i} &=
 2\sum_{l=1}^Lc_{il}y_l-2\lambda y_i=
 2\left(\sum_{l=1}^Lc_{il}y_l-\lambda y_i\right)=
-2\left({C}\boldsymbol{y}-\lambda \boldsymbol{y}\right) \text{ for all } i
+2\left(\mathbf{C}\boldsymbol{y}-\lambda \boldsymbol{y}\right) \text{ for all } i
 \end{align}
 ```
 $\boldsymbol{y}$ の満たすべき条件
 ```math
 \begin{align}
-{C}\boldsymbol{y}-\lambda \boldsymbol{y} &=0 
+\mathbf{C}\boldsymbol{y}-\lambda \boldsymbol{y} &=0 
 \end{align}
 ```
 
-求める $\boldsymbol{y}$ は ${C}$の（固有値 $\lambda$ に対応する）固有ベクトル
+求める $\boldsymbol{y}$ は $\mathbf{C}$ の（固有値 $\lambda$ に対応する）固有ベクトル
 ```math
 \begin{align}
 \boldsymbol{a}^T\boldsymbol{a} &=\boldsymbol{y}^T\mathbf{C}\boldsymbol{y} =\lambda\boldsymbol{y}^T\boldsymbol{y} =\lambda
@@ -326,13 +326,13 @@ $\boldsymbol{y}$ の満たすべき条件
 以下では固有ベクトルの番号（モード番号） $m$ を固有値の大きい順とする
 ```math
 \begin{align}
-\mathbf{C}\boldsymbol{y}^1&=\lambda^1\boldsymbol{y}^1 \\
-\mathbf{C}\boldsymbol{y}^2&=\lambda^2\boldsymbol{y}^2 \\
+& \mathbf{C}\boldsymbol{y}^1=\lambda^1\boldsymbol{y}^1 \\
+& \mathbf{C}\boldsymbol{y}^2=\lambda^2\boldsymbol{y}^2 \\
       &\vdots
 \end{align}
 ```
 
-$m$ 番目の固有ベクトル、固有値を $\boldsymbol{y}^m$、$\lambda^m$ で表現
+$m$ 番目の固有ベクトル、固有値を $\boldsymbol{y}^m$ 、 $\lambda^m$ で表現
 
 数学的関係式
 ```math
